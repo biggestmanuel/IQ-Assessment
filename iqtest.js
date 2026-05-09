@@ -590,6 +590,42 @@ document.querySelectorAll('.gender-btn').forEach(btn => {
   });
 });
 
+// Enter key navigation through form fields
+document.getElementById('inputName').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    document.getElementById('inputAge').focus();
+  }
+});
+
+document.getElementById('inputAge').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    // If gender already selected, go to instructions
+    if (selectedGender) {
+      showInstructions();
+    } else {
+      // Visually pulse the gender buttons to draw attention
+      const grid = document.querySelector('.gender-grid');
+      grid.style.transition = 'all 0.2s';
+      grid.style.outline = '2px solid var(--blue)';
+      grid.style.borderRadius = '10px';
+      setTimeout(() => { grid.style.outline = 'none'; }, 1200);
+      document.querySelector('.gender-btn').focus();
+    }
+  }
+});
+
+// Gender buttons — pressing Enter after selecting one submits the form
+document.querySelectorAll('.gender-btn').forEach(btn => {
+  btn.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (selectedGender) showInstructions();
+    }
+  });
+});
+
 function showInstructions() {
   const name = document.getElementById('inputName').value.trim();
   const age  = document.getElementById('inputAge').value.trim();
@@ -838,7 +874,7 @@ function showResults(correct, skipped, avgTime) {
 function openShareModal() {
   const r = window._lastResult;
   if (!r) return;
-  const text = `🧠 ApexMind Result\n\n${r.name} scored an estimated IQ of ${r.result.iq} (${r.result.range})\n\n${r.result.title}\n✅ ${r.correct}/30 correct · Top ${100 - r.percentile}%\n\nTake the test yourself!`;
+  const text = `🧠 ApexMind Result: ${r.name} scored an estimated IQ of ${r.result.iq} (${r.result.range})\n\n${r.result.title}\n✅ ${r.correct}/30 correct · Top ${100 - r.percentile}%\n\nTake the test yourself!`;
   document.getElementById('sharePreviewText').textContent = text;
   window._shareText = text;
   document.getElementById('shareModal').classList.add('open');

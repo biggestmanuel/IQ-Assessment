@@ -96,14 +96,15 @@ body {
   justify-content: center;
   width: 64px; height: 64px;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  background: transparent;
+  border: 2.5px solid var(--blue);
   margin-bottom: 1rem;
   font-family: 'Syne', sans-serif;
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 800;
-  color: white;
-  letter-spacing: -1px;
-  box-shadow: var(--shadow-lg);
+  color: var(--blue);
+  letter-spacing: 0px;
+  box-shadow: none;
 }
 .brand h1 {
   font-family: 'Syne', sans-serif;
