@@ -838,7 +838,7 @@ function showResults(correct, skipped, avgTime) {
 function openShareModal() {
   const r = window._lastResult;
   if (!r) return;
-  const text = `🧠 IQ Assessment Result\n\n${r.name} scored an estimated IQ of ${r.result.iq} (${r.result.range})\n\n${r.result.title}\n✅ ${r.correct}/30 correct · Top ${100 - r.percentile}%\n\nTake the test yourself!`;
+  const text = `🧠 ApexMind Result\n\n${r.name} scored an estimated IQ of ${r.result.iq} (${r.result.range})\n\n${r.result.title}\n✅ ${r.correct}/30 correct · Top ${100 - r.percentile}%\n\nTake the test yourself!`;
   document.getElementById('sharePreviewText').textContent = text;
   window._shareText = text;
   document.getElementById('shareModal').classList.add('open');
