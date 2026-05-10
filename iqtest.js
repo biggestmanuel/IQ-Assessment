@@ -874,7 +874,7 @@ function showResults(correct, skipped, avgTime) {
 function openShareModal() {
   const r = window._lastResult;
   if (!r) return;
- const text = `🧠 ApexMind Result: ${r.name} scored an estimated IQ of ${r.result.iq} (${r.result.range})\n\n${r.result.title}\n✅ ${r.correct}/30 correct · Top ${100 - r.percentile}%\n\nTake the test yourself!\nhttps://apexmind-psi.vercel.app`;
+  const text = `🧠 ApexMind Result: ${r.name} scored an estimated IQ of ${r.result.iq} (${r.result.range})\n\n${r.result.title}\n✅ ${r.correct}/30 correct · Top ${100 - r.percentile}%\n\nTake the test yourself!`;
   document.getElementById('sharePreviewText').textContent = text;
   window._shareText = text;
   document.getElementById('shareModal').classList.add('open');
@@ -888,29 +888,48 @@ function closeShareModal(e) {
 
 function shareTo(platform) {
   const text = encodeURIComponent(window._shareText || '');
-  const url = encodeURIComponent(window.location.href);
-  const links = {
+  const url  = encodeURIComponent(window.location.href);
+
+  // Platforms with proper web share URLs — open directly
+  const directLinks = {
     whatsapp: `https://api.whatsapp.com/send?text=${text}`,
     telegram: `https://t.me/share/url?url=${url}&text=${text}`,
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`,
-    discord:  null, // Discord has no web share URL; we copy instead
-    snapchat: `https://www.snapchat.com/scan?attachmentUrl=${url}`,
-    instagram: null, // Instagram has no web share URL; we copy instead
   };
 
-  if (platform === 'discord' || platform === 'instagram') {
-    copyResult();
-    const btn = document.querySelector(`.share-platform.${platform}`);
-    if (btn) {
-      const orig = btn.innerHTML;
-      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Copied!`;
-      setTimeout(() => { btn.innerHTML = orig; }, 2000);
-    }
+  // Platforms with no share API — copy text then open the app
+  const copyThenOpen = {
+    discord:   'https://discord.com/channels/@me',
+    tiktok:    'https://www.tiktok.com/',
+    instagram: 'https://www.instagram.com/',
+  };
+
+  if (directLinks[platform]) {
+    window.open(directLinks[platform], '_blank', 'noopener,noreferrer');
     return;
   }
 
-  const link = links[platform];
-  if (link) window.open(link, '_blank', 'noopener,noreferrer');
+  if (copyThenOpen[platform]) {
+    // 1. Copy text to clipboard
+    copyResult();
+    // 2. Flash the button label to confirm copy
+    const btn = document.getElementById(`btn-${platform}`);
+    if (btn) {
+      const label = btn.querySelector('.btn-label');
+      const hint  = btn.querySelector('.btn-hint');
+      if (label) label.textContent = 'Copied!';
+      if (hint)  hint.textContent  = 'opening...';
+      setTimeout(() => {
+        if (label) label.textContent = platform.charAt(0).toUpperCase() + platform.slice(1);
+        if (hint)  hint.textContent  = 'copies & opens';
+      }, 2500);
+    }
+    // 3. Open the app after a tiny delay so copy finishes first
+    setTimeout(() => {
+      window.open(copyThenOpen[platform], '_blank', 'noopener,noreferrer');
+    }, 300);
+    return;
+  }
 }
 
 function copyResult() {

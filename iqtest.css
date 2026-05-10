@@ -725,3 +725,17 @@ body {
   max-width: 320px;
   margin: 0 auto;
 }
+
+/* Share button sub-labels (copies & opens) */
+.share-platform .btn-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+}
+.share-platform .btn-hint {
+  display: block;
+  font-size: 9px;
+  opacity: 0.6;
+  letter-spacing: 0.3px;
+}
+.share-platform.tiktok:hover  { color: #ff0050; border-color: #ff0050; background: rgba(255,0,80,0.07); }
