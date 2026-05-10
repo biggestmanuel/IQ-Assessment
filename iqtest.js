@@ -874,7 +874,7 @@ function showResults(correct, skipped, avgTime) {
 function openShareModal() {
   const r = window._lastResult;
   if (!r) return;
-  const text = `🧠 ApexMind Result: ${r.name} scored an estimated IQ of ${r.result.iq} (${r.result.range})\n\n${r.result.title}\n✅ ${r.correct}/30 correct · Top ${100 - r.percentile}%\n\nTake the test yourself!`;
+  const text = `🧠 ApexMind Result: ${r.name} scored an estimated IQ of ${r.result.iq} (${r.result.range})\n\n${r.result.title}\n✅ ${r.correct}/30 correct · Top ${100 - r.percentile}%\n\nTake the test yourself!\nhttps://apexmind-psi.vercel.app`;
   document.getElementById('sharePreviewText').textContent = text;
   window._shareText = text;
   document.getElementById('shareModal').classList.add('open');

@@ -25,16 +25,28 @@
 <!-- LOADING -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-ring"></div>
-  <p class="loading-text">LET'S GET THE ApexMIND STARTED!!!</p>
+  <p class="loading-text">LET'S GET THE ApexMIND STARTED</p>
 </div>
 
 <!-- WELCOME -->
 <div class="screen" id="welcomeScreen">
   <div class="welcome-wrap">
     <div class="brand">
-      <div class="brand-mark">AM</div>
+      <div class="brand-mark">
+  <svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" width="42" height="46">
+    <polygon points="50,6 4,98 96,98" fill="none" stroke="#1e3a6e" stroke-width="2"/>
+    <polygon points="50,18 14,90 86,90" fill="none" stroke="#2563b0" stroke-width="2.5"/>
+    <polygon points="50,30 24,82 76,82" fill="none" stroke="#4fa3e0" stroke-width="3"/>
+    <polygon points="50,30 24,82 50,82" fill="#0d1e3a"/>
+    <polygon points="50,30 50,82 76,82" fill="#091528"/>
+    <line x1="50" y1="30" x2="50" y2="82" stroke="#2563b0" stroke-width="1"/>
+    <rect x="24" y="82" width="52" height="3" rx="1" fill="#4fa3e0"/>
+    <circle cx="50" cy="30" r="3.5" fill="#7ec8f5"/>
+    <circle cx="50" cy="30" r="7" fill="none" stroke="#7ec8f5" stroke-width="1" opacity="0.5"/>
+  </svg>
+</div>
       <h1>ApexMIND</h1>
-      <p>Know Your Potential. Note, this doesn't define you.</p>
+      <p>KNOW YOUR POTENTIAL. <strong>Note, this doesn't measure your intelligence in the traditional sense.</strong></p>
     </div>
     <div class="form-card">
       <div class="form-group">
@@ -119,14 +131,14 @@
         <div class="instr-icon">🧠</div>
         <div class="instr-body">
           <div class="instr-title">Scoring & IQ Range</div>
-          <div class="instr-text">Your final IQ score is calculated instantly at the end. You will receive an <strong>IQ range</strong> (e.g. 115–120), a percentile ranking, and a written assessment of your performance. Results can be shared to WhatsApp, Telegram, and more. Please note, this doesn't define you.</div>
+          <div class="instr-text">Your final IQ score is calculated instantly at the end. You will receive an <strong>IQ range</strong> (e.g. 115–120), a percentile ranking, and a written assessment of your performance. Results can be shared to WhatsApp, Telegram, and more. <strong>Note, this does not define you</strong></div>
         </div>
       </div>
 
     </div>
 
     <div class="instr-footer">
-      <p class="instr-agree">By starting, you confirm you have read and understood the above rules. LET'S GET THE ApexMIND STARTED</p>
+      <p class="instr-agree">By starting, you confirm you have read and understood the above rules.</p>
       <button class="start-btn instr-start-btn" onclick="startTest()">READY WHEN YOU ARE</button>
     </div>
 
@@ -206,7 +218,7 @@
   <div class="expired-wrap">
     <div class="expired-icon">⚠️</div>
     <h2>Test Terminated</h2>
-    <p>You navigated away from the assessment. Per test protocol, your session has been invalidated. Please start fresh.</p>
+    <p>You navigated away from the assessment. Per test protocol, your session has been considered invalid. Don't worry, let's start again.</p>
     <button class="start-btn" onclick="hardReset()">Start New Test</button>
   </div>
 </div>
