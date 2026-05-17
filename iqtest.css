@@ -94,7 +94,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 64px; height: 64px;
+  width: 100px; height: 100px;
   border-radius: 0;
   background: transparent;
   border: none;
